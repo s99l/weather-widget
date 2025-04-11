@@ -4,8 +4,13 @@ import time
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
-API_KEY = os.getenv("API_KEY")
+if "API_KEY" in st.secrets:
+    API_KEY = st.secrets["API_KEY"]
+else:
+    # Fallback to .env (for local development)
+    from dotenv import load_dotenv
+    load_dotenv()
+    API_KEY = os.getenv("API_KEY")
 # pip install -r requirements.txt
 
 # List of locations
